@@ -1,6 +1,5 @@
 package br.com.github.jordihofc.reserva.mesa;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.net.URI;
 import java.time.LocalDateTime;
@@ -43,7 +41,7 @@ public class ReservarMesaController {
 
         LocalDateTime dataDaReserva = request.getDataReserva();
 
-        if (reservaRepository.existsByIdAndReservadoParaIsEquals(mesaId, dataDaReserva)) {
+        if (reservaRepository.existsMesaByIdAndReservadoParaIs(mesaId, dataDaReserva)) {
             throw new ResponseStatusException(UNPROCESSABLE_ENTITY, "Horario indisponivel para reserva");
         }
 

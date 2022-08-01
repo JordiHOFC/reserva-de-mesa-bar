@@ -21,7 +21,7 @@ public class Reserva {
     private LocalDateTime reservadoPara;
 
     @Column(nullable = false)
-    private LocalDateTime criadoEm= now();
+    private LocalDateTime criadoEm = now();
 
     public Reserva(Mesa mesa, Usuario reservadoPor, LocalDateTime reservadoPara) {
         this.mesa = mesa;

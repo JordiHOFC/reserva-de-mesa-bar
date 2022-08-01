@@ -1,5 +1,7 @@
 package br.com.github.jordihofc.reserva.mesa;
 
+import org.springframework.web.server.ResponseStatusException;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,6 +37,10 @@ public class Mesa {
     }
 
     public Reserva reservar(Usuario usuario, LocalDateTime dataReserva) {
+        if(!disponivelParaReserva){
+            throw  new MesaIndisponivelException("Mesa indisponivel para reserva");
+        }
+
         this.disponivelParaReserva=false;
         return new Reserva(this,usuario,dataReserva);
     }
